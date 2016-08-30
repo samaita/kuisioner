@@ -39,7 +39,7 @@
     name = $('#loginUsername').val();
     pass = $('#loginPassword').val();
     console.log(name, pass);
-
+    window.location.assign('app/app.html'); // for demo only
     $.ajax({
       type: "POST",
       url: "lib/ci/index.php/telkom/login",
