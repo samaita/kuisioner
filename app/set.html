@@ -1,0 +1,30 @@
+<ons-navigator>
+   <ons-page>
+        <!--<ons-toolbar class='bg-transparent'>
+            <div class="left bg-tra">
+                <ons-toolbar-button ng-click="app.slidingMenu.toggleMenu()"><ons-icon icon="bars" class='cl-red'></ons-icon></ons-toolbar-button>
+            </div>
+        </ons-toolbar>-->
+        <section id='appSetting'>
+            <h1>Setting</h1>
+             <div id='appSettingSet' class='appWidget' style='overflow: visible;'>
+                <form>
+                <input type="hidden" name="name" id="appSettingId"><br>
+                <label for="username">New Name</label>
+                <input type="text" name="name" id="appSettingNama" placeholder='Your Previous Name' required><br>
+                <span style='border-bottom: 2px solid #eee; width: 100%; float: left'/>
+                <label for="username">New password</label>
+                <input type="password" name="password" id="appSettingPassword1" placeholder='Your new password'><br>
+                <span style='border-bottom: 2px solid #eee; width: 100%; float: left'/>
+                <!-- <label for="username">Confirm new password</label>
+                <input type="password" name="password2" id="username" placeholder='Your new password, again'><br>
+                <span style='border-bottom: 2px solid #eee; width: 100%; float: left'/>                 --> 
+                  <input type="submit" onclick='changeAccount()' value="Save Setting">
+                </form>
+   
+            </div>
+           
+
+        </section>
+    </ons-page>
+</ons-navigator>

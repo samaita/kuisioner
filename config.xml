@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+    <widget xmlns   = "http://www.w3.org/ns/widgets"
+        xmlns:gap   = "http://phonegap.com/ns/1.0"
+        id          = "com.phonegap.kuisinoerplasatelkom"
+        versionCode = "10" 
+        version     = "1.0.0" >
+
+    <!-- versionCode is optional and Android only -->
+
+    <name>Kuisioner Plasa Telkom</name>
+
+    <description>
+        Aplikasi Kuisioner Plasa Telkom untuk Tablet
+    </description>
+
+    <author href="https://samaita.com" email="garysamaita@gmail.com">
+        Gary Almas
+    </author>
+    <access origin="*" /> 
+    <icon src="/assets/img/logo-telkom.png" />
+
+    <preference name="fullscreen" value="true" />
+    <preference name="phonegap-version" value="3.7.0" />
+    <preference name="orientation" value="landscape" />
+
+    <feature name="http://api.phonegap.com/1.0/network" />
+<feature name="http://api.phonegap.com/1.0/notification" />
+<feature name="http://api.phonegap.com/1.0/media" />
+<feature name="http://api.phonegap.com/1.0/file" />
+<feature name="http://api.phonegap.com/1.0/device" />
+
+</widget>

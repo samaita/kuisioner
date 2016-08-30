@@ -1,0 +1,40 @@
+<ons-navigator animation='slide' var='app.slidingMenu.dashboard'>
+   <ons-page class='bg-telkom'>
+        <!--<ons-toolbar class='bg-transparent'>
+            <div class="left bg-tra">
+                <ons-toolbar-button ng-click="app.slidingMenu.toggleMenu()"><ons-icon icon="bars" class='cl-red'></ons-icon></ons-toolbar-button>
+            </div>
+        </ons-toolbar>-->
+        <section id='appDashboard';>
+            <h1>Welcome, Superadmin</h1>
+            <!--<p>Latest update: Minggu, 24 Mei 2014 16:00</p>-->
+            <div id='appDashboardStatisticUser' class='appWidget w-30'>
+                <span class='value'>0</span>
+                <span class='desc'>Customers Today</span>
+            </div>
+            <div id='appDashboardStatisticIndex' class='appWidget w-30' style='display:none'>
+                <span class='value'>3.4</span>
+                <span class='desc'>Satisfication Rate(Out of 4)</span>
+            </div>
+            <div id='appDashboardStatisticEnable' class='appWidget w-30 bg-red' onclick='getKuisioner()'>
+                <span style='    font-size: 30px;  height:50px;    display: block;  text-align:center;line-height: 1;
+  margin-top: 30px;'>Enable Questionnare</span>
+            </div>
+            <div id='appDashboardLatest' class='appWidget' style='display:none; height: 300px; overflow: visible;'>
+                <span style='font-size: 24px; font-weight: 800;' class='cl-red'>Latest Activities</span>
+                <table>
+                    <tr>
+                        <td>Minggu, 24 Mei 2015 06.00</td><td>Tablet A diaktifkan</td>
+                    </tr>
+                    <tr>
+                        <td>Minggu, 24 Mei 2015 07.00</td><td>Pengguna Upin mengisi di tablet A, sangat puas dengan pelayanan Plasa Telkom</td>
+                    </tr>
+                    <tr>
+                        <td>Minggu, 24 Mei 2015 07.00</td><td>Pengguna Upin mengisi di tablet A, cukup puas dengan pelayanan Plasa Telkom</td>
+                    </tr>
+                </table>    
+            </div>
+
+        </section>
+    </ons-page>
+</ons-navigator>

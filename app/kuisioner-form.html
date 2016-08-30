@@ -1,0 +1,113 @@
+<ons-navigator animation='slide' var='app.slidingMenu.dashboard'>
+   <ons-page class='bg-telkom'>
+        <ons-toolbar class='bg-transparent'>
+            <div class="left bg-tra">
+                <ons-toolbar-button ng-click="app.slidingMenu.toggleMenu()"><ons-icon icon="bars" class='cl-red'></ons-icon></ons-toolbar-button>
+            </div>
+        </ons-toolbar>
+        <section id='appKuisioner'>
+           
+                <div class='mainFrame'>
+                    <div id='appMenuLogo' style='margin:auto; transform: scale(1.5)'></div>
+                    <div class='banner-red'>Telkom Jakarta Barat</div>
+                    <div id='appKuisionerIdentitasForm' class='appWidget' style='overflow: visible;'>
+                        <form>
+                        <div><label for="username">Nama</label>
+                        <input type="text" name="name" id="appKuisionerIdentitasNama" placeholder='Nama Anda'><br>
+                        <span style='border-bottom: 2px solid #eee; width: 100%; float: left'/>
+                        <!-- <label for="username">Nomor Keluhan</label>
+                        <input type="text" name="name" id="appKuisionerIdentitasKeluhan" placeholder='Nomor keluhan Anda'><br>
+                        <span style='border-bottom: 2px solid #eee; width: 100%; float: left'/> -->
+                        <label for="username">Nomor Kontak</label>
+                        <input type="text" name="name" id="appKuisionerIdentitasKontak" placeholder='Nomor yang dapat dihubungi'><br>
+<!--                         <span style='border-bottom: 2px solid #eee; width: 100%; float: left'/> --></div>            
+                          <input type="submit" style='margin-top:0px;' onclick="lanjutKepuasan()" value="Lanjut">
+                        </form>
+                    </div>
+                </div>
+                <div class='mainFrame hide'>
+                    <h1>Saatnya anda menilai Plasa Telkom!</h1>
+                    <div id='appKuisioneKepuasan' class='appWidget' style='overflow: visible;'>
+                       <div id='appKuisionerKepuasanSangatPuas' class='puas-button'><span class='text'>Sangat Puas</span></div>
+
+                       <div id='appKuisionerKepuasanPuas' class='puas-button'><span class='text'>Puas</span></div>
+
+                       <div id='appKuisionerKepuasanKurangPuas' class='puas-button'><span class='text'>Kurang Puas</span></div>
+
+                       <div id='appKuisionerKepuasanTidakPuas' class='puas-button'><span class='text'>Tidak Puas</span></div>
+                    </div>
+
+                    <span style='border-bottom: 2px solid #eee; width: 100%; float: left; margin-bottom: 20px;'/>
+                    <h1>Kritik & Saran</h1>
+                     <div id='appKuisionerKritik' class='appWidget' style='overflow: visible;'>
+                        <form>
+                            <div>
+                        <textarea id='appKuisionerKritikIsi'></textarea>
+                        </div>      
+                          <input type="submit" value="Lanjut" onclick='lanjutIndihome();'>
+                        </form>
+                    </div>
+                </div>
+                <div class='mainFrame hide'>
+                    <div id='appKuisionerPenjelasanIndihome' class='appWidget' style='overflow: visible;'>
+                        <div class='indihome-logo'></div>
+                        <div><p><span style='color: #f00'>INDIHOME</span>adalah program TELKOM untuk memberikan kemudahan kepada pelanggan hanya dengan satu saluran telepon rumah yang dapat diakses beragam fungsi</p>
+                        <p>Memungkinkan pelanggan menambah "value"(UseeTV, Content & SHM), dipergunakan secara bersamaan tanpa saling mengganggu antar produk.</p></div>
+                        
+                    
+
+                   
+                    <p>Setelah mendengar penjelasan petugas Telkom, apakah anda berminat berlangganan <span style='color: #f00'>INDIHOME</span>?</p>
+                    </div>
+
+                      <div id='appKuisionerIndihome' class='appWidget' style='overflow: visible;'>
+                        <form>
+                        <div>
+                            <div class='row'>
+                                <div id='opsi1' class='opsi'></div>
+                                <div id='ket1' class='ket'>Terima kasih. Saya sudah berlangganan. </div>
+                            </div>
+                            <span style='border-bottom: 2px solid #eee; width: 100%; float: left'/>
+                             <div class='row'>
+                                <div id='opsi2' class='opsi'></div>
+                                <div id='ket2' class='ket'>Bersedia pasang <span style='color: #f00'>INDIHOME</span></div><!-- <input type="text" name="name" id="appKuisionerIndihomeKontak" placeholder='Nomor Anda'> -->
+                            </div>
+                            <span style='border-bottom: 2px solid #eee; width: 100%; float: left'/>
+                             <div class='row'>
+                                <div id='opsi3' class='opsi'></div>
+                                <div id='ket3' class='ket'>Pikir-pikir, minta persetujuan dari Pemilik, Orangtua, atau </div><!-- <input type="text" name="name" id="appKuisionerIndihomeOrangLain" placeholder='Orang lain'>
+                                .
+                                <div id='ket3' class='ket'>
+                                Hubungi: </div>  
+                                <input type="text" name="name" id="appKuisionerIndihomeKontakOrangLain" placeholder='Orang lain'>
+ -->
+                            </div>
+                            <span style='border-bottom: 2px solid #eee; width: 100%; float: left'/>
+                             <div class='row'>
+                                <div id='opsi4' class='opsi'></div>
+                                <div id='ket4' class='ket'>Maaf, tidak bersedia</div>
+                            </div>
+                            <span style='border-bottom: 2px solid #eee; width: 100%; float: left'/>
+                        </div>
+                        <input type="submit" onclick='lanjutPenutup();' value="Selesai">
+                        </form>
+                    </div>
+                </div>
+               <div class='mainFrame hide'>
+                    <div id='appMenuLogo' style='margin:auto; transform: scale(1.5)'></div>
+                    <div class='banner-transparent'>Terima kasih atas kunjungan, penilaian, dan waktu anda!</div>
+                     <div id='appKuisionerLoop' onclick='loopKuisioner()' class='banner-red'>Kembali</div>
+                     <div class='loading'>
+                        <div class='dot'></div>
+                        <div class='dot'></div>
+                        <div class='dot'></div>
+                        <div class='dot'></div>
+                        <div class='dot'></div>                                       
+                     </div>
+                </div>
+
+                
+    </section>
+    </ons-page>
+
+</ons-navigator>

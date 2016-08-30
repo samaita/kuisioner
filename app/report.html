@@ -1,0 +1,28 @@
+<ons-navigator>
+   <ons-page>
+        <!--<ons-toolbar class='bg-transparent'>
+            <div class="left bg-tra">
+                <ons-toolbar-button ng-click="app.slidingMenu.toggleMenu()"><ons-icon icon="bars" class='cl-red'></ons-icon></ons-toolbar-button>
+            </div>
+        </ons-toolbar>-->
+        <section id='appReport'>
+            <h1>Report</h1>
+             <div id='appReportToday' class='appWidget' style='margin-top:20px;overflow: visible;'>
+                <form >
+                <label for="username">From</label>
+                <input type="date" name="name" id="appReportDate1"><br>
+                <span style='border-bottom: 2px solid #eee; width: 100%; float: left'/>
+                <label for="username">To</label>
+                <input type="date" name="password" id="appReportDate2"><br>
+                <span style='border-bottom: 2px solid #eee; width: 100%; float: left'/>
+                <input id='getXlsCustom' onclick='getReport()' type="submit" value='Get .XLS'>
+                <div id='getXlsToday' onclick='getReportToday()' class='xlbutton'>  Get .XLS Today</div>
+                <div id='getXlsLast7days' onclick='getReportWeek()' class='xlbutton'> Get .Xls Last 7 Days</div>
+                <div id='getXlsMonth' onclick='getReportMonth()' class='xlbutton'> Get .XLS This Month</div>
+                </form>
+            </div>
+            <span style='border-bottom: 2px solid #eee; width: 100%; float: left'/>
+            <div id='DestroyReportToday' onclick='destroyReportToday()' class='bg-red hide'>  Reset Counter Today</div>
+        </section>
+    </ons-page>
+</ons-navigator>

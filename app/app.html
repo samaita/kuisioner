@@ -1,0 +1,268 @@
+<html>
+<head>
+<meta name=viewport content="width=device-width, initial-scale=1, user-scalable=no">
+<link rel="stylesheet" href="../lib/onsenui/css/onsenui.css">
+<link rel="stylesheet" href="../lib/onsenui/css/onsen-css-components.css">
+<link rel="stylesheet" href="../assets/css/app.css">
+
+<script src="../lib/onsenui/js/angular/angular.js"></script>
+<script src="../lib/onsenui/js/onsenui.js"></script>
+<script src="../lib/js/jquery.min.js"></script>
+<script>
+  ons.bootstrap();
+  ons.ready(function() {
+    // Add another Onsen UI element
+    var content = document.getElementById("#my-content");
+    content.innerHTML="<ons-button>Another Button</ons-button>";
+    ons.compile(content);
+    
+  });
+
+  $(document).ready(function(){
+    removeMenu();
+    getDashboardData();
+    getAccountSetting();
+  });
+
+  function getKuisioner(){
+    setTimeout("location.href = 'kuisioner.html';");
+    //window.location.assign('http://10.122.1.102/studio/telkom-kuisioner/lib/function/today.xls');
+    //   $.ajax({
+    //   url: "../lib/function/today.php",
+    //   success: function(html){    
+    //     window.location.assign('http://10.122.1.102/studio/telkom-kuisioner/lib/function/today.xls');
+    //   }
+    // });
+
+  }
+
+  function removeMenu(){
+    $.ajax({
+        type: "POST",
+        url: "../lib/ci/index.php/telkom/alive",
+        success: function(html){    
+          data = jQuery.parseJSON(html);
+          if(data.level < 5){
+            $('#manageAccount').remove();
+            $('#DestroyReportToday').remove();
+            console.log(data.level);
+          }else if(data.level == 5){
+            $('#DestroyReportToday').removeClass('hide');
+          }
+        }
+      });
+
+  }
+
+  function message(where, type, msg){
+    $('#appMessage').remove();
+    if(type=='success'){
+     $(where).prepend('<span id="appMessage" style=" font-size: 16px; border:2px solid #0f0; display:block; margin: 5px 10px;margin-bottom: 10px; text-align: center; padding: 20px;">'+msg+'</span>');
+
+    }else{
+     $(where).prepend('<span id="appMessage" style=" font-size: 16px; border:2px solid #f00; display:block; margin: 5px 10px;margin-bottom: 10px; text-align: center; padding: 20px;">'+msg+'</span>');
+    }
+  }
+
+  function getDashboardData(){
+    $.ajax({
+        type: "POST",
+        url: "../lib/ci/index.php/telkom/getDashboardData",
+        success: function(html){    
+          data = jQuery.parseJSON(html);
+            $('#appDashboardStatisticUser .value').text(data.result.length);
+        },
+      });
+  }
+
+  function createAccount(){
+    username = $('#appAccountCreateUsername').val();
+    password = $('#appAccountCreatePassword1').val();
+    nama = $('#appAccountCreateNama').val();
+    if(!nama){
+      nama = 'Petugas Telkom';
+    }
+    petugas = $('#appAccountCreatePetugas').val();
+    
+    if(username&&password&&nama&&petugas){
+    $.ajax({
+      type: "POST",
+      url: "../lib/ci/index.php/telkom/createAccount",
+      data: "param1="+username+"&param2="+password+"&param3="+nama+"&param4="+petugas,
+      success: function(html){
+        data = jQuery.parseJSON(html);    
+        if(data.result){
+          message('#appAccountCreate', 'success', data.msg);
+          $('input[type="text"], input[type="password"], input[type="date"]').val('');
+          getActiveAccount();
+        }
+       else{
+          message('#appAccountCreate', 'failed', data.msg);
+          getActiveAccount();
+        }
+      },
+    });
+    return false;
+    }
+  }
+
+  function getActiveAccount(){
+    $('tr').remove();   
+    $.ajax({
+      type: "GET",
+      url: "../lib/ci/index.php/telkom/getActiveAccount",
+      success: function(html){
+        data = jQuery.parseJSON(html);    
+        if(data.result){
+          for(i=1; i < data.result.length; i++){
+            if(data.result[i].level==5){
+              posisi = 'Superadmin';
+            }else if(data.result[i].level==2){
+              posisi = 'Petugas Rekap';
+            }else{
+              posisi = 'Petugas Telkom';
+            }
+            if(data.result[i].is_active==1){
+            $('table').append(
+                    "<tr><td>"+(i)+"</td><td>"+data.result[i].nama+"</td><td>"+posisi+"</td><td><a href='#' class='button active'>Active</a><a href='#' class='button delete' onclick='deleteAccount("+data.result[i].idpetugas+")'>Delete</a></td></tr>");
+            }else{
+            $('table').append(
+                    "<tr><td>"+(i)+"</td><td>"+data.result[i].nama+"</td><td>"+posisi+"</td><td><a href='#' class='button inactive'>Inactive</a><a href='#' class='button delete' onclick='deleteAccount("+data.result[i].idpetugas+")'>Delete</a></td></tr>"
+              );
+          }
+
+            console.log(data.result[i]);
+          }
+        }
+      },
+    });
+  }
+
+function deleteAccount(id){
+    $.ajax({
+      type: "GET",
+      url: "../lib/ci/index.php/telkom/deleteAccount/"+id,
+      success: function(html){
+        data = jQuery.parseJSON(html);
+        $('tr').remove();   
+        message('#appAccountList', 'success', data.msg);
+        getActiveAccount();
+      },
+    });
+  }
+
+  function getAccountSetting(){
+    $.ajax({
+        type: "POST",
+        url: "../lib/ci/index.php/telkom/getAccountSetting",
+        success: function(html){    
+          data = jQuery.parseJSON(html);
+
+            $('#appSettingId').val(data.result[0].idpetugas);
+            $('#appSettingNama').val(data.result[0].nama);
+        },
+      });
+  }
+
+  function changeAccount(){
+    pass =    $('#appSettingPassword1').val();
+    nama = $('#appSettingNama').val();
+    id = $('#appSettingId').val();
+    if(!pass){
+        param = "param1="+nama+"&param3="+id;
+      }else{
+        param = "param1="+nama+"&param2="+pass+"&param3="+id;
+      }
+    if(nama){
+      $.ajax({
+        type: "POST",
+        url: "../lib/ci/index.php/telkom/changeAccount",
+        data: param,
+        success: function(html){
+          data = jQuery.parseJSON(html);    
+          if(data.result){
+            message('#appSettingSet', 'success', data.msg);
+           $('input[type="text"], input[type="password"], input[type="date"]').val('');
+            getAccountSetting();
+          }
+        },
+      });
+    }
+  }
+
+  function logOut(){
+    $.ajax({
+        type: "POST",
+        url: "../lib/ci/index.php/telkom/logOut",
+        success: function(html){    
+          data = jQuery.parseJSON(html);
+          if(data){
+            window.location.assign('../index.html');
+          }
+        }
+      });
+  }
+
+  function destroyReportToday(){
+    $.ajax({
+    type: "POST",
+    url: "../lib/ci/index.php/telkom/destroyReportToday",
+    success: function(html){    
+        getDashboardData()
+    }
+  });
+  }
+
+  function getReport(){
+  date1 = $("#appReportDate1").val();
+  date2 = $("#appReportDate2").val();
+  if(date1&&date2){
+    $.ajax({
+          type: "POST",
+          url: "../lib/function/custom.php",
+          data: "param1="+date1+"&param2="+date2,
+            success: function(html){    
+              //window.location.href = "../lib/function/custom.xls";
+            }
+        });
+     }else{
+      message('#appReportToday', 'warning', 'Mohon lengkapi kedua tanggal.');
+      }
+  }
+
+  function getReportToday(){
+    $.ajax({
+      url: "../lib/function/today-report.php",
+      success: function(html){    
+        window.location.href = "../lib/function/today-report.xls"
+      }
+    });
+  }
+  function getReportWeek(){
+    $.ajax({
+      url: "../lib/function/week.php",
+      success: function(html){    
+        window.location.href = "../lib/function/week.xls"
+      }
+    });
+  }
+  function getReportMonth(){
+    $.ajax({
+      url: "../lib/function/month.php",
+      success: function(html){    
+        window.location.href = "../lib/function/month.xls"
+      }
+    });
+  }
+
+</script>
+</head>
+<body>
+ <ons-split-view var="app.slidingMenu"
+    secondary-page="menu.html"
+    main-page="dashboard.html"
+    main-page-width="80%"
+    collapse="width 600px">
+  </ons-split-view>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<ons-page style="background-color: rgba(200,200,200,0.1)">
+    <ons-list style="background-color: rgba(200,200,200,0.1)">
+        <ons-list-item>
+            <section id=''>
+                <div id='appMenuLogo'></div>
+            </section>
+        </ons-list-item>
+        <ons-list-item
+            modifier="tappable" class="list__item__line-height"
+            onclick="app.slidingMenu.setMainPage('dashboard.html', {closeMenu: true}); getDashboardData();">
+            <i class="fa fa-home fa-lg" style="color: #999"></i>
+            &nbsp; Dashboard
+        </ons-list-item>
+        <ons-list-item
+            id='manageAccount' modifier="tappable" class="list__item__line-height"
+            onclick="app.slidingMenu.setMainPage('accounts.html', {closeMenu: true});getActiveAccount();">
+            <i class="fa fa-users fa-lg" style="color: #999"></i>
+            &nbsp; Manage Accounts
+        </ons-list-item>
+        <ons-list-item
+            modifier="tappable" class="list__item__line-height"
+            onclick="app.slidingMenu.setMainPage('report.html', {closeMenu: true});removeMenu();">
+            <i class="fa fa-file-excel-o fa-lg" style="color: #999"></i>
+            &nbsp; Report
+        </ons-list-item>
+        <ons-list-item
+            modifier="tappable" class="list__item__line-height"
+            onclick="app.slidingMenu.setMainPage('set.html', {closeMenu: true});getAccountSetting()">
+            <i class="fa fa-gears fa-lg" style="color: #999"></i>
+            &nbsp; Setting
+        </ons-list-item>
+        <ons-list-item
+            modifier="tappable" class="list__item__line-height bg-red"
+            onclick="logOut();">
+            <i class="fa fa-lock fa-lg" style="color: #fff;"></i>
+            &nbsp; Log Out
+        </ons-list-item>
+    </ons-list>
+</ons-page>

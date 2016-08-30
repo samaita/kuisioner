@@ -1,0 +1,55 @@
+<ons-navigator>
+   <ons-page>
+        <!--<ons-toolbar class='bg-transparent'>
+            <div class="left bg-tra">
+                <ons-toolbar-button ng-click="app.slidingMenu.toggleMenu()"><ons-icon icon="bars" class='cl-red'></ons-icon></ons-toolbar-button>
+            </div>
+        </ons-toolbar>-->
+        <section id='appAccount'>
+            <h1>Create New Account</h1>
+             <div id='appAccountCreate' class='appWidget'>
+                <form>
+                  <span><label for="username">Username*</label>
+                  <input type="text" name="username" id="appAccountCreateUsername" required placeholder='8-32 Character A-Z, case-sensitive'>
+                    </span><br>
+                    <span style='border-bottom: 2px solid #eee; width: 100%; float: left'/>
+                  <span><label for="username">Password*</label>
+                  <input type="password" name="password" id="appAccountCreatePassword1" required placeholder='Password'></span><br>
+                  <span style='border-bottom: 2px solid #eee; width: 100%; float: left'/>
+                  <!-- <span><label for="username">Confirm Password</label>
+                  <input type="password" name="password2" id="appAccountCreatePassword2" required placeholder='Type Your Password Again'></span><br>
+                  <span style='border-bottom: 2px solid #eee; width: 100%; float: left'/> -->
+                  <span><label for="username">Name</label>
+                  <input type="text" name="nama" id="appAccountCreateNama" placeholder='Displayed name'></span><br>
+                  <span style='border-bottom: 2px solid #eee; width: 100%; float: left'/>
+                  <span><label for="">Petugas</label>
+                  <select id='appAccountCreatePetugas'>
+                      <option value="1">Telkom</option>
+                      <option value="2">Rekap</option>
+                    </select></span><br>
+                 <span style='border-bottom: 2px solid #eee; width: 100%; float: left'/>
+                 <span><label for="username"><span style='font-size: 12px; color: #f00'><b>*required</b></span></label>
+                  <input onclick='createAccount()' type="submit" value="Create Account">
+                </form>
+   
+            </div>
+            <span style='border-bottom: 2px solid #eee; width: 100%; float: left; margin-bottom: 20px;'/>
+            <h1>Active Accounts</h1>
+             <div id='appAccountList' class='appWidget' style='overflow: visible;'>
+                <table>
+                    <col width="10%">
+                    <col width="40%">
+                    <col width="20%">
+                    <col width="30%">
+                    <tr>
+                        <td><b>No</b></td><td><b>Nama</b></td><td><b>Posisi</b></td><td><b>Action</b></td>
+                    </tr>
+                    
+                </table>    
+            </div>
+            
+           
+
+        </section>
+    </ons-page>
+</ons-navigator>

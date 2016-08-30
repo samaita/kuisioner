@@ -1,0 +1,175 @@
+<html>
+<head>
+<meta name=viewport content="width=device-width, initial-scale=1, user-scalable=no">
+<link rel="stylesheet" href="../lib/onsenui/css/onsenui.css">
+<link rel="stylesheet" href="../lib/onsenui/css/onsen-css-components.css">
+<link rel="stylesheet" href="../assets/css/app.css">
+
+<script src="../lib/onsenui/js/angular/angular.js"></script>
+<script src="../lib/onsenui/js/onsenui.js"></script>
+<script src="../lib/js/jquery.min.js"></script>
+<script>
+  ons.bootstrap();
+  ons.ready(function() {
+    // Add another Onsen UI element
+    var content = document.getElementById("#my-content");
+    content.innerHTML="<ons-button>Another Button</ons-button>";
+    ons.compile(content);
+
+  });
+
+  $(document).ready(function(){
+
+  });
+
+function message(where, type, msg){
+    $('#appMessage').remove();
+    if(type=='success'){
+     $(where).prepend('<span id="appMessage" style=" font-size: 16px; border:2px solid #0f0; display:block; margin: 5px 10px;margin-bottom: 10px; text-align: center; padding: 20px;">'+msg+'</span>').hide().fadeIn('slow');
+
+    }else if(type=='warning'){
+     $(where).prepend('<span id="appMessage" style=" font-size: 16px; border:2px solid #eee; display:block; margin: 5px 10px;margin-bottom: 10px; text-align: center; padding: 20px;">'+msg+'</span>');
+    }else{
+     $(where).prepend('<span id="appMessage" style=" font-size: 16px; border:2px solid #f00; display:block; margin: 5px 10px;margin-bottom: 10px; text-align: center; padding: 20px;">'+msg+'</span>')
+    }
+  }
+
+  function getMainFrame(param1, param2){
+    if(param1){
+      $("#appKuisioner .mainFrame:nth-child("+param1+")").fadeOut(800).addClass('hide');
+    }
+    if(param2){
+      $("#appKuisioner .mainFrame:nth-child("+param2+")").removeClass('hide').fadeIn();
+    }
+  }
+
+  function lanjutKepuasan(){
+    nama = $('#appKuisionerIdentitasNama').val();
+    //keluhan = $('#appKuisionerIdentitasKeluhan').val();
+    kontak = $('#appKuisionerIdentitasKontak').val();
+
+    $( ".puas-button" ).bind( "click", function() {
+      $(".puas-button").removeClass("puas-button-selected").addClass('puas-button-not-selected');
+      $( this ).addClass( "puas-button-selected" ).removeClass('puas-button-not-selected');
+      $('#appMessage').remove();
+    });
+    if(nama&&kontak){
+      getMainFrame(1,2);
+    }else{
+      message('#appKuisionerIdentitasForm', '', 'Mohon lengkapi terlebih dahulu.' );
+    }
+  }
+
+  function lanjutIndihome(){
+    kritik = $('#appKuisionerKritikIsi').val();
+
+    if($('#appKuisionerKepuasanTidakPuas.puas-button-selected').length == 1 ){
+        kepuasan = 1;
+      }else if($('#appKuisionerKepuasanKurangPuas.puas-button-selected').length == 1 ){
+        kepuasan = 2;
+      }else if($('#appKuisionerKepuasanPuas.puas-button-selected').length == 1 ){
+        kepuasan = 3;
+      }else if($('#appKuisionerKepuasanSangatPuas.puas-button-selected').length == 1 ){
+        kepuasan = 4;
+      }else {
+        kepuasan = 'belum';
+      }
+      if(kepuasan !== 'belum'){
+        $( ".row" ).bind( "click", function() {
+          $(".row").addClass("row-not-selected").removeClass('row-selected');
+          $('.opsi').removeClass('opsi-selected');
+          $(this).removeClass("row-not-selected").addClass("row-selected");
+          $(".row.row-selected .opsi").addClass('opsi-selected');
+          $('#appMessage').remove();
+        });
+
+        $('#appKuisionerIndihomeKontak').val(kontak);
+        console.log('kepuasan', kepuasan);
+        getMainFrame(2,3);
+
+      }else{
+        message('#appKuisioneKepuasan', '', 'Mohon pilih salah satu.' );
+      }
+
+  }
+
+  function lanjutPenutup(){
+    //kontakIndihome = $('#appKuisionerIndihomeKontak').val();
+    //orangLain = $('#appKuisionerIndihomeOrangLain').val();
+    //kontakOrangLain = $('#appKuisionerIndihomeKontakOrangLain').val();
+
+    if($('#opsi1.opsi-selected').length == 1 ){
+        pasangIndihome = 4;
+      }else if($('#opsi2.opsi-selected').length == 1 ){
+         pasangIndihome = 3;
+      }else if($('#opsi3.opsi-selected').length == 1 ){
+         pasangIndihome = 2;
+      }else if($('#opsi4.opsi-selected').length == 1 ){
+         pasangIndihome = 1;
+      }else {
+        pasangIndihome = 'belum';
+      }
+      // if(pasangIndihome == 'belum' || (pasangIndihome == 2 && kontakIndihome == '') || (pasangIndihome == 3 && kontakOrangLain == '')){
+
+      // }
+      if(pasangIndihome !== 'belum'){
+         console.log('submit this!',nama, kontak, kepuasan, kritik, pasangIndihome);
+
+         submitData(nama, kontak, kepuasan, kritik, pasangIndihome);
+
+
+         setTimeout(function(){$('.dot:nth-child(1)').addClass('bg-red')}, 1000);
+         setTimeout(function(){$('.dot:nth-child(2)').addClass('bg-red')}, 2000);
+         setTimeout(function(){$('.dot:nth-child(3)').addClass('bg-red')}, 3000);
+         setTimeout(function(){$('.dot:nth-child(4)').addClass('bg-red')}, 4000);
+         setTimeout(function(){$('.dot:nth-child(5)').addClass('bg-red')}, 5000);
+         setTimeout(function(){loopKuisioner()}, 6000);
+      }else{
+         message('#appKuisionerIndihome', '', 'Mohon pilih salah satu.' );
+      }
+  }
+  function submitData(param1, param2, param3, param4, param5){
+    $.ajax({
+      type: "POST",
+      url: "../lib/ci/index.php/telkom/submitData",
+      data: "param1="+param1+"&param2="+param2+"&param3="+param3+"&param4="+param4+"&param5="+param5,
+      success: function(html){
+        if(html){
+          getMainFrame(3,4);
+        }
+      },
+    });
+  }
+
+  function loopKuisioner(){
+    getMainFrame(4,1);
+    $('.opsi').removeClass('opsi-selected');
+    $('.row').removeClass('row-selected').removeClass('row-not-selected');
+    $(".puas-button").removeClass("puas-button-selected puas-button-not-selected");
+    $('.dot').removeClass('bg-red');
+    $('#appMessage').remove();
+    $('input[type="text"]').val('');
+    $('textarea').val('');
+  }
+
+  function getKepuasan(){
+    $(this).click(function(){
+      $(this).css( "border", "2px solid #f00");
+    });
+  }
+
+  function stopKuisioner(){
+    window.location.assign('app.html');
+  }
+</script>
+</head>
+<body>
+ <ons-sliding-menu var="app.slidingMenu"
+    menu-page="kuisioner-menu.html"
+    main-page="kuisioner-form.html"
+    side="left"
+     swipeable="false"
+    max-slide-distance="270px">
+  </ons-split-view>
+</body>
+</html>

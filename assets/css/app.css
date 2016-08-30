@@ -1,0 +1,561 @@
+* { 
+  -moz-box-sizing: border-box; 
+  -webkit-box-sizing: border-box; 
+  box-sizing: border-box; 
+  -webkit-transition: all 0.2s ease;
+  -moz-transition:    all 0.2s ease;
+  -ms-transition:     all 0.2s ease;
+  -o-transition:      all 0.2s ease;
+}
+
+@font-face {
+    font-family: OpenSans;
+    src: url(../fonts/OpenSans-Light.ttf);
+}
+
+body{
+	margin:0px;
+	font-family: OpenSans !important;
+}
+
+/* APP */
+
+#appSplash, #appLogin{
+	width: 100%;
+	max-width: 600px;
+	height: 300px;
+	margin: auto;
+	top: 50%;
+	margin-top: -150px;
+	position:absolute;
+	left:50%;
+	margin-left: -300px;
+}
+
+#appLogin{
+	max-width: 300px;
+	z-index: -1;
+	margin-left: -150px;
+    height:400px;
+}
+
+#appSplash #appLogoTelkom{
+	width:200px;
+	height:200px;
+	margin:auto;
+	background: url('../img/logo-telkom.png');
+	background-size: 200px 200px;
+}
+
+#appSplash{
+
+        margin-bottom: 30px;
+}
+
+
+#appSplash p{
+	font-size: 36px;
+	margin: 0px;
+	padding: 0px;
+	text-align: center;
+	width: 100%;
+}
+
+#appSplash p:last-child{
+	margin-top: -10px;
+	font-size: 28px
+}
+
+#appLogin{
+	padding-top: 250px;
+	opacity: 0;
+}
+
+#appLogin input[type='text'], #appLogin input[type='password']{
+    width: 100%;
+    max-width: 280px;
+    border: 0px;
+    background: none;
+    border-bottom: 1px solid #ccc;
+    font-family: OpenSans;
+    font-size: 22px;
+    padding: 10px;
+}
+#appLogin input[type='submit']{
+    width: 70px;
+    height: 70px;
+    position:absolute;
+    left: 50%;
+    margin-left: -35px;
+    margin-top: 80px;
+    background: url('../img/unlock.png') center center;
+    background-size: 70px;
+    border:none;
+    color: rgba(0,0,0,0);
+    border-radius: 100px;
+    opacity: 0.7;
+}
+
+#appSplash {
+    -moz-animation: actSplash 1s ease 3s forwards;
+    -webkit-animation: actSplash 1s ease 3s forwards;
+    -o-animation:actSplash 1s ease 3s forwards;
+    animation:actSplash 1s ease 3s forwards;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+}
+@keyframes actSplash {
+    to { 	transform: scale(0.8);
+  margin-top: -270px;}
+}
+@-webkit-keyframes actSplash {
+    to {	transform: scale(0.8);
+  margin-top: -270px;}
+}
+
+#appLogin {
+    -moz-animation: actFadeInLogin 1s ease 3.5s forwards;
+    -webkit-animation: actFadeInLogin 1s ease 3.5s forwards;
+    -o-animation:actFadeInLogin 1s ease 3.5s forwards;
+    animation:actFadeInLogin 1s ease 3.5s forwards;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;	
+}
+@keyframes actFadeInLogin {
+    to { 	opacity:1;padding-top:185px;}
+}
+@-webkit-keyframes actFadeInLogin {
+    to {opacity:1;padding-top:185px;}
+}
+
+#appMenuLogo{
+    width:250px;
+    height: 200px;
+    background: url('../img/logo-app.png') center center no-repeat;
+    background-size: 230px auto;
+}
+
+ons-list-item{
+    font-family: 'OpenSans';
+}
+
+#appDashboard, #appAccount, #appSetting, #appReport, .mainFrame{
+    width: 100%;
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+    margin-top: 25px;
+}
+
+#appKuisioner .mainFrame{
+    position: absolute;
+    margin:auto;
+    left: 50%;
+    margin-left:-400px;
+    width: 800px;
+}
+
+#appDashboard h1, #appDashboard p, #appAccount h1, #appAccount p, #appSetting h1, #appReport h1, #appKuisioner h1{
+    margin: 0px 0px;
+    margin-bottom: 5px;
+}
+
+#appDashboard .appWidget, #appAccount .appWidget, #appSetting .appWidget, #appReport .appWidget{
+    width: 100%;
+    max-width: 845px;
+    margin: 5px;
+    padding: 10px;
+    border: 4px solid #f00;
+    border-radius:4px;
+    float: left;
+    background: rgba(255,255,255,0.5);
+    padding-bottom: 20px;
+}
+
+#appAccount .appWidget, #appSetting .appWidget, #appReport .appWidget{
+    border: none;
+}
+
+#appAccount{
+    padding-bottom: 50px;
+}
+
+#appAccountCreate form, #appSettingSet form{
+    width: 100%;
+}
+
+
+#appAccountCreate form input, #appAccountCreate form select, #appSettingSet form input, #appReport form input, #appKuisioner form input{
+float:left;
+width: 70%;
+padding: 10px;
+margin: 5px 0px;
+font-family: 'OpenSans';
+font-size: 16px;
+}
+
+#appAccountCreate form input[type='submit'], #appSettingSet form input[type='submit']{
+    width:100%;
+    background: #333;
+    color: #fff;
+    border: none;
+    padding: 20px;
+}
+
+#appReport form input[type='submit'], #appReport .xlbutton{
+    width: 25%;
+    background: #eee;
+    color: #333;
+    border:none;
+    padding: 20px;
+    float:left;
+    margin-top: 5px;
+    text-align: center;
+}
+
+#appReport #getXlsCustom{
+    background: #f00;
+}
+
+#appAccountCreate form label, #appSettingSet form label, #appReport form label, #appKuisioner form label{
+    width: 30%;
+    display:block;
+    margin:0px;
+    float :left;
+    padding: 15px
+}
+
+div#appDashboardStatisticUser .value, div#appDashboardStatisticIndex .value{
+    font-size: 50px;
+    display: block;
+    text-align: right;
+    padding: 5px 10px;
+    font-weight: 800;
+    border-bottom: 2px solid #eee;
+    letter-spacing: -2;
+}
+
+div#appDashboardStatisticUser .desc, div#appDashboardStatisticIndex .desc{
+    font-size: 20px;
+    display: block;
+    text-align:center;
+    padding: 10px
+}
+
+div#appDashboardStatisticIndex .value{
+    text-align: center;
+}
+
+div#appDashboardStatisticIndex .desc{
+    font-size: 18px;
+}
+
+td{
+    padding: 10px 5px;
+}
+tr{
+    border-bottom: 2px solid #eee;
+}
+
+table{
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#appAccount .inactive, #appAccount .active{
+    background: #eee;
+    color: #333;
+    width:80px;
+    text-align: :center;
+}
+
+#appAccount .active{
+    background: #0f0;
+    color: #333;
+}
+
+#appAccount .delete{
+    background: #f00;
+}
+
+
+.banner-red {
+    padding: 15;
+    /* margin: 10px 0px; */
+    display: block;
+    width: 300px;
+    font-size: 20px;
+    background: #f00;
+    color: #fff;
+    text-align: center;
+    /* margin: auto; */
+    margin: 10px auto;
+}
+
+#appKuisioner input[type="submit"] {
+    width: 100px;
+    height:100px;
+    float: left;
+    color: #fff;
+    background: #f00;
+    border:none;
+    border-radius: 100%;
+    margin-top: 50px;
+}
+
+#appKuisioner form div {
+    width: 85%;
+    float:left;
+    margin-right: 10px;
+}
+
+#appKuisioner h1{
+    text-align: left;
+    font-size: 24px;
+}
+
+.puas-button{
+    width: 20%;
+    max-width: 180px; 
+    height: 160px;
+    background: #eee;
+    float: left;
+    margin: 0px 2.5%;
+    text-align: center;
+}
+
+.puas-button-selected{
+    border: 4px solid #f00;
+}
+
+.puas-button-not-selected{
+    opacity: 0.4;
+}
+
+.puas-button .text{
+    font-size: 20px;
+    display:block;
+    margin-top: 125px;
+}
+
+div#appKuisioneKepuasan {
+    margin:30px 0px;
+}
+
+#appKuisionerKepuasanSangatPuas{
+    background: url('../img/sangatpuas.png')top center no-repeat;
+    background-size: 70% auto;
+}
+
+#appKuisionerKepuasanPuas{
+    background: url('../img/puas.png')top center no-repeat;
+    background-size: 70% auto;
+}
+
+#appKuisionerKepuasanKurangPuas{
+    background: url('../img/kurangpuas.png')top center no-repeat;
+    background-size: 70% auto;
+}
+
+#appKuisionerKepuasanTidakPuas{
+    background: url('../img/tidakpuas.png')top center no-repeat;
+    background-size: 70% auto;
+}
+
+#appKuisionerKritik{
+    margin-top: 10px;
+}
+
+#appKuisionerKritik textarea {
+  width: 100%;
+  height: 150px;
+  font-family: 'OpenSans';
+  font-size:18px;
+  padding: 10px;
+  color: #333;
+  resize: none;
+  background: rgba(0,0,0,0);
+    border: 2px solid #f00;
+}
+
+#appKuisionerKritik input[type="submit"]{
+    margin-top: 25px
+}
+
+.indihome-logo {
+    width: 200px;
+    height: 200px;
+    float: left;
+    background: url('../img/logo-indihome.png') center center no-repeat;
+    background-size: 200px;
+}
+
+div#appKuisionerPenjelasanIndihome p {
+    text-align:left;
+    font-size: 18px
+}
+
+
+div#appKuisionerIndihome{
+    margin-top: -10px;
+}
+
+div#appKuisionerIndihome .row{
+    padding: 10px;
+    font-size: 18px;
+    text-align: left;
+}
+
+div#appKuisionerIndihome .opsi {
+    width: 40px;
+    height: 40px;
+    border: 2px solid #f00;
+    float :left;
+}
+
+.opsi-selected{
+    background: #f00;
+}
+
+#appKuisionerIndihome .row{
+    width: 100%;
+}
+
+#appKuisionerIndihome .row.row-selected{
+    background: #eef;
+}
+
+#appKuisionerIndihome .row.row-not-selected{
+    opacity: 0.6;
+}
+
+#appKuisionerIndihome .ket{
+    padding-top: 5px;
+    float: left;
+}
+
+#appKuisionerIndihome #ket2 {
+    min-width:320px !important;
+    max-width: 30%;
+}
+
+#appKuisionerIndihome input[type='text'] {
+    min-width:110px !important;
+    max-width: 30%;
+    margin: 0px!important;
+    height: 45px;
+}
+
+#appKuisionerIndihome .row:nth-child(5) input:nth-child(3){
+    width: 100px !important;
+    float: left
+    }
+
+
+#appKuisionerIndihome #ket3:nth-child(2){
+    min-width: 10px !important;
+    width: 460px;
+    float: left;    }
+
+#appKuisionerIndihome #ket3 {
+    min-width:320px !important;
+    max-width: 72%
+}
+
+
+#appKuisionerIndihome #ket3:nth-child(4){
+    min-width: 10px !important;
+    width: 80px;
+    float: left;
+    margin-left: 50px;
+    }
+
+    .loading {
+    width: 100px;
+    height: 20px;
+    margin: auto;
+}
+
+.loading .dot{
+    width: 10px;
+    height:10px;
+    background:#999;
+    float :left;
+    border-radius: 100%;
+    margin: 5px;
+}
+
+
+.banner-transparent{
+    font-size: 24px;
+    border: 2px solid #f00;
+    padding: 10px;
+    margin: 10px 50px;
+    margin-top: 100px;
+
+}
+
+
+.w-30{
+    max-width: 275px !important;
+    height: 150px;
+}
+
+
+.bg-telkom{
+    background: url('../img/background-app.png') center center no-repeat !important;
+    background-size:  cover !important;
+}
+
+.bg-red{
+    background: #f00 !important;
+    color: #fff !important;
+}
+
+.bg-transparent{
+    background: rgba(0,0,0,0) !important;
+    border: none !important;
+}
+
+.cl-red{
+    color: #f00 !important;
+}
+
+ons-carousel-item {
+  display: table;
+  text-align: center;
+}
+.item-label {
+  display: table-cell;
+  vertical-align: middle;
+  color: white;
+  line-height: 1;
+  font-size: 48px;
+  font-weight: bold;
+}
+.cover-label {
+  text-align: center;
+  position: absolute;
+  left: 0px;
+  width: 100%;
+  bottom: 10px;
+  color: white;
+}
+
+.hide{
+    display:none;
+}
+
+div#DestroyReportToday {
+    /* height: 100px; */
+    float: left;
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.page__content{
+    overflow: scroll;
+    overflow-x: visible !important;
+}
